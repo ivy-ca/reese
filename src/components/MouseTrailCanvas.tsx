@@ -117,7 +117,7 @@ export default function MouseTrailCanvas() {
         // progress 0 -> 1 over life
         const progress = Math.max(0, Math.min(1, 1 - (this.ttl - this.time) / this.ttl));
         // Fade in then out smoothly (0 -> 1 -> 0)
-        const alpha = Math.sin(progress * Math.PI);
+        const alpha = Math.sin(progress * Math.PI) * 0.5;
 
         const previousAlpha = context.globalAlpha;
         const previousLineWidth = context.lineWidth;

@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
-    // 只在生產環境強制 HTTPS 轉址，避免本機開發出現 https 無效回應
+    // Enforce HTTPS redirects only in production to avoid local dev HTTPS issues
     if (process.env.NODE_ENV !== 'production') {
       return [];
     }
 
-    // 獲取域名，如果沒有設定則使用 localhost
+    // Get domain from env; default to localhost if not set
     const domain = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000';
 
     return [
@@ -25,7 +25,7 @@ const nextConfig = {
     ];
   },
   async headers() {
-    // 開發環境不送出 HSTS 與 upgrade-insecure-requests，避免本機因憑證導致問題
+    // Do not send HSTS or upgrade-insecure-requests in development to avoid cert issues
     if (process.env.NODE_ENV !== 'production') {
       return [];
     }
